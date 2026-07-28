@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function NoticeCard(){
+export default function NoticeCard(props){
    return(
            <View style={styles.card}>
                <Text 
                style={styles.title} >
-                   NOTICE 
+                  {props.title}
                </Text>
                <Text>
-                "Hackathon related Details are here"
+                
+                {props.description}
                </Text>
            </View>
        )

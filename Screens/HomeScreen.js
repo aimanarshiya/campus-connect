@@ -7,8 +7,13 @@ export default function HomeScreen(){
     return (
         <View>
             <Header/>
-            <WelcomeCard/>
-            <NoticeCard/>
+            <WelcomeCard 
+                name="Aiman"
+                dept="CSE"
+            />
+            <NoticeCard 
+                description="4PM Today"
+                title="Holiday for Rathaiah's Birthday" />
             <Footer/>
         </View>
     )

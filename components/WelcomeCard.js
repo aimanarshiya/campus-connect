@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
-export default function WelcomeCard(){
+export default function WelcomeCard(props){
+    let name = "Aiman Arshiya"
     return(
         <View style={styles.card}>
             <Text 
             style={styles.title} >
-                welcome student
+                welcome {props.name}
             </Text>
             <Text>
-                have a great learning
+                Department{props.dept}
             </Text>
         </View>
     )

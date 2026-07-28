@@ -7,10 +7,7 @@ export default function HomeScreen(){
     return (
         <View>
             <Header/>
-            <WelcomeCard 
-                name="Aiman"
-                dept="CSE"
-            />
+            <WelcomeCard />
             <NoticeCard 
                 description="4PM Today"
                 title="Holiday for Rathaiah's Birthday" />

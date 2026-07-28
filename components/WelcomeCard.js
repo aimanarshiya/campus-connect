@@ -1,15 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native';
-export default function WelcomeCard(props){
-    let name = "Aiman Arshiya"
+import { StyleSheet, Text, View, Button } from 'react-native';
+import {useState} from "react";
+
+
+export default function WelcomeCard(){
+
+    // let name = "Aiman Arshiya"
+    const [name,setName] = useState("Aiman");
+    const [dept,setDept] = useState("CSE");
+
     return(
         <View style={styles.card}>
             <Text 
             style={styles.title} >
-                welcome {props.name}
+                welcome {name}
             </Text>
+           
             <Text>
-                Department{props.dept}
+                Have a great learning!.
             </Text>
+            <Button title="change name" 
+                onPress={() =>setName("Revathi")}
+            />
+            <Text>
+                Department{dept}
+            </Text>
+            <Button title="change dept" 
+                onPress={() =>setDept("ECE")}
+            />
+            
         </View>
     )
 }

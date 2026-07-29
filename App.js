@@ -4,13 +4,15 @@ import { SafeAreaView } from 'react-native-web';
 import HomeScreen from './Screens/HomeScreen';
 import RegistrationScreen from './Screens/RegistrationScreen';
 import StudentForm from './components/StudentForm';
+import AppNavigator from './navigation/AppNavigator';
 
 
 export default function App(){
   return(
     <View>
-      <RegistrationScreen/>
+      {/* <RegistrationScreen/> */}
       {/* <HomeScreen/> */}
+      <AppNavigator/>
     </View>
   )
 }

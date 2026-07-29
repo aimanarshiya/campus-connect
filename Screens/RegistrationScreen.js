@@ -1,7 +1,8 @@
 import { Text, ScrollView, StyleSheet, View } from "react-native";
 import StudentForm from "../components/StudentForm";
+import { useNavigation } from '@react-navigation/native';
 
-export default function StudentRegistration(){
+export default function StudentRegistration({navigation}){
     return(
         <ScrollView style={styles.container} contentContainerStyle={styles.content}>
             <View style={styles.header}>

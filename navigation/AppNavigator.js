@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import StudentRegistration from "../Screens/RegistrationScreen";
-import HomeScreen from '../HomeScreencreens/HomeScreen';
+import HomeScreen from '../Screens/HomeScreen';
 export default function AppNavigator(){
     //this creates navigation stack
     const Stack = createNativeStackNavigator();

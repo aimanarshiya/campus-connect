@@ -12,7 +12,9 @@ export default function App(){
     <View>
       {/* <RegistrationScreen/> */}
       {/* <HomeScreen/> */}
-      <AppNavigator/>
+      <NavigationContainer>
+        <AppNavigator/>
+        </NavigationContainer>
     </View>
   )
 }

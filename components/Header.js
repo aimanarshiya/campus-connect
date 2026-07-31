@@ -1,19 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native';
+// components/Header.js
+import { View, Text, StyleSheet } from "react-native";
+
 export default function Header(){
     return(
-        <View style={styles.container}>
-            <Text style={styles.title}>Campus-Connect</Text>
+        <View style={styles.header}>
+            <Text style={styles.logo}>🎓 Campus Connect</Text>
         </View>
     )
 }
-const styles=StyleSheet.create({
-    container:{
-        padding:20,
-        backgroundColor:"#2563EB",
+
+const styles = StyleSheet.create({
+    header:{
+        backgroundColor:"#138a4a",
+        paddingVertical:16,
+        paddingHorizontal:20,
+        alignItems:"center",
+        justifyContent:"center",
     },
-    title:{
-        color:"#fff",
-        fontSize:24,
+    logo:{
+        fontSize:20,
         fontWeight:"bold",
+        color:"#FFFFFF",
+        letterSpacing:0.5,
     },
-}); 
+})

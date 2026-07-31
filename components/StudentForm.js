@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function StudentForm(){
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [rollNumber, setRollNumber] = useState("");
     const [collegeName, setCollegeName] = useState("");
     const [department, setDepartment] = useState("");
@@ -13,19 +14,25 @@ export default function StudentForm(){
     const [submitted, setSubmitted] = useState(null);
 
     function handleRegistration(){
-        if(!userName || !email || !rollNumber || !collegeName || !department || !section || !year || !userPass){
+        if(!userName || !email || !phone || !rollNumber || !collegeName || !department || !section || !year || !userPass){
             alert("Please fill all fields");
             return;
         }
 
+        if(phone.length !== 10){
+            alert("Enter a valid 10-digit phone number");
+            return;
+        }
+
         setSubmitted({
-            userName, email, rollNumber, collegeName, department, branch, section, year
+            userName, email, phone, rollNumber, collegeName, department, section, year
         });
 
         alert("Registration Successful");
 
         setUserName("");
         setEmail("");
+        setPhone("");
         setRollNumber("");
         setCollegeName("");
         setDepartment("");
@@ -41,6 +48,7 @@ export default function StudentForm(){
                 style={styles.input}
                 value={userName}
                 placeholder="Enter your name"
+                placeholderTextColor="#999"
                 onChangeText={setUserName}
             />
 
@@ -49,9 +57,21 @@ export default function StudentForm(){
                 style={styles.input}
                 value={email}
                 placeholder="Enter your email"
+                placeholderTextColor="#999"
                 keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={setEmail}
+            />
+
+            <Text style={styles.label}>Phone Number</Text>
+            <TextInput
+                style={styles.input}
+                value={phone}
+                placeholder="Enter 10-digit phone number"
+                placeholderTextColor="#999"
+                keyboardType="number-pad"
+                maxLength={10}
+                onChangeText={(val) => setPhone(val.replace(/[^0-9]/g, ""))}
             />
 
             <Text style={styles.label}>Roll Number</Text>
@@ -59,6 +79,7 @@ export default function StudentForm(){
                 style={styles.input}
                 value={rollNumber}
                 placeholder="Enter roll number"
+                placeholderTextColor="#999"
                 keyboardType="numeric"
                 onChangeText={setRollNumber}
             />
@@ -68,6 +89,7 @@ export default function StudentForm(){
                 style={styles.input}
                 value={collegeName}
                 placeholder="Enter college name"
+                placeholderTextColor="#999"
                 onChangeText={setCollegeName}
             />
 
@@ -76,16 +98,16 @@ export default function StudentForm(){
                 style={styles.input}
                 value={department}
                 placeholder="Enter department"
+                placeholderTextColor="#999"
                 onChangeText={setDepartment}
             />
-
-         
 
             <Text style={styles.label}>Section</Text>
             <TextInput
                 style={styles.input}
                 value={section}
                 placeholder="Enter section"
+                placeholderTextColor="#999"
                 onChangeText={setSection}
             />
 
@@ -94,6 +116,7 @@ export default function StudentForm(){
                 style={styles.input}
                 value={year}
                 placeholder="Enter year (e.g. 3rd Year)"
+                placeholderTextColor="#999"
                 onChangeText={setYear}
             />
 
@@ -102,24 +125,50 @@ export default function StudentForm(){
                 style={styles.input}
                 value={userPass}
                 placeholder="Enter your password"
+                placeholderTextColor="#999"
                 secureTextEntry
                 onChangeText={setUserPass}
             />
 
-            <TouchableOpacity style={styles.button} onPress={handleRegistration}>
+            <TouchableOpacity style={styles.button} onPress={handleRegistration} activeOpacity={0.8}>
                 <Text style={styles.buttonText}>Register</Text>
             </TouchableOpacity>
 
             {submitted && (
                 <View style={styles.previewBox}>
-                    <Text style={styles.previewTitle}>Registered Details</Text>
-                    <Text style={styles.previewText}>Name: {submitted.userName}</Text>
-                    <Text style={styles.previewText}>Email: {submitted.email}</Text>
-                    <Text style={styles.previewText}>Roll No: {submitted.rollNumber}</Text>
-                    <Text style={styles.previewText}>College: {submitted.collegeName}</Text>
-                    <Text style={styles.previewText}>Department: {submitted.department}</Text>
-                    <Text style={styles.previewText}>Section: {submitted.section}</Text>
-                    <Text style={styles.previewText}>Year: {submitted.year}</Text>
+                    <Text style={styles.previewTitle}>✅ Registered Details</Text>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>Name</Text>
+                        <Text style={styles.previewValue}>{submitted.userName}</Text>
+                    </View>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>Email</Text>
+                        <Text style={styles.previewValue}>{submitted.email}</Text>
+                    </View>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>Phone</Text>
+                        <Text style={styles.previewValue}>{submitted.phone}</Text>
+                    </View>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>Roll No</Text>
+                        <Text style={styles.previewValue}>{submitted.rollNumber}</Text>
+                    </View>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>College</Text>
+                        <Text style={styles.previewValue}>{submitted.collegeName}</Text>
+                    </View>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>Department</Text>
+                        <Text style={styles.previewValue}>{submitted.department}</Text>
+                    </View>
+                    <View style={styles.previewRow}>
+                        <Text style={styles.previewLabel}>Section</Text>
+                        <Text style={styles.previewValue}>{submitted.section}</Text>
+                    </View>
+                    <View style={[styles.previewRow, { borderBottomWidth: 0 }]}>
+                        <Text style={styles.previewLabel}>Year</Text>
+                        <Text style={styles.previewValue}>{submitted.year}</Text>
+                    </View>
                 </View>
             )}
         </View>
@@ -128,51 +177,75 @@ export default function StudentForm(){
 
 const styles = StyleSheet.create({
     form:{
-        gap:12,
+        gap:14,
     },
     label:{
-        fontSize:14,
+        fontSize:13,
         fontWeight:"600",
-        color:"#333333",
-        marginBottom:-6,
+        color:"#444444",
+        marginBottom:-8,
+        textTransform:"uppercase",
+        letterSpacing:0.5,
     },
     input:{
         borderWidth:1,
-        borderColor:"#CCCCCC",
-        borderRadius:8,
-        padding:12,
+        borderColor:"#DDDDDD",
+        borderRadius:10,
+        paddingVertical:12,
+        paddingHorizontal:14,
         fontSize:15,
         backgroundColor:"#FFFFFF",
+        color:"#222222",
     },
     button:{
         backgroundColor:"#138a4a",
-        borderRadius:8,
-        padding:14,
+        borderRadius:10,
+        paddingVertical:15,
         alignItems:"center",
-        marginTop:10,
+        marginTop:12,
+        shadowColor:"#138a4a",
+        shadowOffset:{ width:0, height:3 },
+        shadowOpacity:0.3,
+        shadowRadius:5,
+        elevation:3,
     },
     buttonText:{
         color:"#FFFFFF",
         fontSize:16,
         fontWeight:"bold",
+        letterSpacing:0.5,
     },
     previewBox:{
-        marginTop:20,
-        padding:16,
+        marginTop:24,
+        padding:18,
         backgroundColor:"#EAF7EF",
-        borderRadius:8,
+        borderRadius:12,
         borderWidth:1,
-        borderColor:"#138a4a",
-        gap:4,
+        borderColor:"#BFE6CE",
     },
     previewTitle:{
         fontSize:16,
         fontWeight:"bold",
         color:"#138a4a",
-        marginBottom:6,
+        marginBottom:12,
     },
-    previewText:{
-        fontSize:14,
-        color:"#333333",
+    previewRow:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        paddingVertical:8,
+        borderBottomWidth:1,
+        borderBottomColor:"#D5EDDD",
+    },
+    previewLabel:{
+        fontSize:13,
+        color:"#5A5A5A",
+        fontWeight:"600",
+    },
+    previewValue:{
+        fontSize:13,
+        color:"#222222",
+        fontWeight:"500",
+        maxWidth:"60%",
+        textAlign:"right",
     },
 })

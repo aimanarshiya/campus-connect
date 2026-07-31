@@ -1,28 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native';
+// components/Footer.js
+import { View, Text, StyleSheet } from "react-native";
 
 export default function Footer(){
     return(
-        <View style={styles.container}>
-            <Text 
-            style={styles.title} >
-                All rights Reserved!.
-            </Text>
-            <Text>
-                copyrights@2026
-            </Text>
+        <View style={styles.footer}>
+            <Text style={styles.text}>© 2026 Campus Connect. All rights reserved.</Text>
         </View>
     )
 }
 
-
-const styles=StyleSheet.create({
-    container:{
-        padding:20,
-        backgroundColor:"#2563EB",
+const styles = StyleSheet.create({
+    footer:{
+        paddingVertical:14,
+        alignItems:"center",
+        justifyContent:"center",
+        borderTopWidth:1,
+        borderTopColor:"#EEEEEE",
     },
-    title:{
-        color:"#fff",
-        fontSize:24,
-        fontWeight:"bold",
+    text:{
+        fontSize:12,
+        color:"#888888",
     },
-}); 
+})
